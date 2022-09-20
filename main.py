@@ -1,21 +1,24 @@
+from ast import keyword
+from re import search
 from remoteok import *
 from weworkremotely import *
 from file import *
-from flask import Flask
+from flask import Flask, render_template
 
+
+code = 200
 
 app = Flask("JobScrapper")
 
 @app.route("/")
 def main():
-    return 'MAIN'
+    return render_template("home.html", search=keyword)
 
-@app.route("/test")
-def test():
-    return 'TEST PAGE'
+@app.route("/search")
+def search():
+    return
 
 app.run("127.0.0.1")
-
 
 
 # scraping_remoteok("rust")
