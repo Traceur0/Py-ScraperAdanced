@@ -39,20 +39,20 @@ def scraping_wwr(term):
             code_replacer(code)
             for li in job_li:
                 try:
-                    res_company = li.select_one(f'#category-{code} > article > ul > li > a > span.company').text
-                    res_title = li.select_one(f'#category-{code} > article > ul > li > a > span.title').text
-                    res_jobtype = li.select(f'#category-{code} > article > ul > li > a > span.company')[1].text
-                    res_location = li.select_one(f'#category-{code} > article > ul > li > a > span.region.company').text
+                    company = li.select_one(f'#category-{code} > article > ul > li > a > span.company').text
+                    title = li.select_one(f'#category-{code} > article > ul > li > a > span.title').text
+                    jobtype = li.select(f'#category-{code} > article > ul > li > a > span.company')[1].text
+                    location = li.select_one(f'#category-{code} > article > ul > li > a > span.region.company').text
 
                     # Default value
-                    res_elapsed_time = ""
+                    elapsed_time = ""
                     try:
-                        res_elapsed_time = li.select_one(f'#category-{code} > article > ul > li > a > span.date > time').text
+                        elapsed_time = li.select_one(f'#category-{code} > article > ul > li > a > span.date > time').text
                     except:
-                        if res_elapsed_time == None:
-                            res_elapsed_time = "Recent"
+                        if elapsed_time == None:
+                            elapsed_time = "Recent"
 
-                    res_link_partial = li.select(f'#category-{code} > article > ul > li > a')[0]['href']
+                    link_partial = li.select(f'#category-{code} > article > ul > li > a')[0]['href']
 
                 except:
                     try:
@@ -61,12 +61,12 @@ def scraping_wwr(term):
                         pass
             
                 jobset = {
-                    'title': res_title,
-                    'company': res_company,
-                    'location': res_location,
-                    'jobtype': res_jobtype,
-                    'elapsed_time': res_elapsed_time,
-                    'apply_link': "https://weworkremotely.com" + res_link_partial
+                    'title': title,
+                    'company': company,
+                    'location': location,
+                    'jobtype': jobtype,
+                    'elapsed_time': elapsed_time,
+                    'apply_link': "https://weworkremotely.com" + link_partial
                 }
                 jobs.append(jobset)
 

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobScrapper</title>
+    <title>Result</title>
   </head>
   <body>
     <hr />
@@ -17,14 +17,13 @@
          ╚════╝  ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝  ╚═╝
     </pre>
     <form action="/search">
-      <h3>
-        　　　Type PROGRAMMING LANGUAGE what you are looking for the job .
-      </h3>
+      <h3>Type PROGRAMMING LANGUAGE what you are looking for the job .</h3>
       <hr />
       <br />
       <hr />
-      <input type="text" name="keyword" placeholder="Programming language" />
-      <button>Search</button>
+      {% for jobset in remoteok %}
+      <div>{{jobset.title}}</div>
+      {% endfor %}
     </form>
   </body>
 </html>

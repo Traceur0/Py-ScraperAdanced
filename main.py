@@ -3,11 +3,9 @@ from re import search
 from remoteok import *
 from weworkremotely import *
 from file import *
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
-
-code = 200
-
+'''
 app = Flask("JobScrapper")
 
 @app.route("/")
@@ -16,19 +14,16 @@ def main():
 
 @app.route("/search")
 def search():
-    return
+    keyword = request.args.get("keyword")
+    remoteok = scraping_remoteok(keyword)
+    return render_template("result.html", keyword=keyword)
 
 app.run("127.0.0.1")
+'''
 
 
-# scraping_remoteok("rust")
+print(scraping_remoteok("python"))
 # scraping_wwr("react")
-'''
-def transmitter():
-    return input("type what you search for: ")
-keyword = transmitter()
+# wwr = scraping_wwr(keyword) 
 
-remoteok = scraping_remoteok(keyword)
-mk_remoteok_into_csv(keyword, remoteok)
-'''
-# wwr = scraping_wwr(keyword)
+# mk_remoteok_into_csv(keyword, remoteok)
