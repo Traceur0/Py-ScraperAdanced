@@ -9,15 +9,16 @@ def scraping_remoteok(term):
         soup = BS(request.text, "html.parser")
         print("Scraping "+term.upper()+f" job info in '{url}'\n")
         jobs = []
-        ad = soup.select_one('tr.sw-insert.ad.advertisement.sponsored')
         job_table = soup.select('tr.job') # array, resultType
-        job_table.insert(0, ad)
         for item in job_table:
-            title = item.select_one(
-                'tr > td.company.position.company_and_position > a > h2').text.strip('\n')
-                # jobsboard > tbody > tr.sw-insert.ad.advertisement.sponsored > td.company.position.company_and_position > a:nth-child(3) > h3
-            company = item.select_one(
-                'tr > td.company.position.company_and_position > a > h3').text.strip('\n ')
+            title = item.select_one('tr > td.company.position.company_and_position > a > h2').text.strip('\n')
+
+            try:    
+                company = item.select_one('tr > td.company.position.company_and_position > span > h3').text.strip('\n ')
+            except:
+                company = ""
+            # Error : line 15 - AttributeError: 'NoneType' object has no attribute 'text'
+            # Unsolved
 
             try:
                 verified = item.select_one(
@@ -25,7 +26,7 @@ def scraping_remoteok(term):
             except:
                 verified = ""
 
-            # Default value # 
+            # Default value
             location = []
             salary = ""
             jobtype = ""

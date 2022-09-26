@@ -21,9 +21,33 @@
       <hr />
       <br />
       <hr />
-      {% for jobset in remoteok %}
-      <div>{{jobset.title}}</div>
-      {% endfor %}
+      <h4>This is what you looking for : {{keyword}}</h4>
+      <table>
+        <th>title</th>
+        <th>company</th>
+        <th>location</th>
+        <th>jobtype</th>
+        <th>elapsed_time</th>
+        <th>apply_link</th>
+        <th>salary</th>
+        <th>tag</th>
+        <th>verified</th>
+        <th>closed</th>
+        {% for jobset in remoteok %}
+        <tr>
+          <td>{{jobset.title}}</td>
+          <td>{{jobset.company}}</td>
+          <td>{{jobset.location}}</td>
+          <td>{{jobset.jobtype}}</td>
+          <td>{{jobset.elapsed_time}}</td>
+          <td>{{jobset.apply_link}}</td>
+          <td>{{jobset.salary}}</td>
+          <td>{{jobset.tag}}</td>
+          <td>{{jobset.verified}}</td>
+          <td>{{jobset.closed}}</td>
+        </tr>
+        {% endfor %}
+      </table>
     </form>
   </body>
 </html>
