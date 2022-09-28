@@ -5,49 +5,69 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Result</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css"
+    />
   </head>
   <body>
-    <hr />
-    <pre>
-             ██╗ ██████╗ ██████╗ ███████╗ ██████╗██████╗  █████╗ ██████╗ ██████╗ ███████╗██████╗ 
-             ██║██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
-             ██║██║   ██║██████╔╝███████╗██║     ██████╔╝███████║██████╔╝██████╔╝█████╗  ██████╔╝
-        ██   ██║██║   ██║██╔══██╗╚════██║██║     ██╔══██╗██╔══██║██╔═══╝ ██╔═══╝ ██╔══╝  ██╔══██╗
-        ╚█████╔╝╚██████╔╝██████╔╝███████║╚██████╗██║  ██║██║  ██║██║     ██║     ███████╗██║  ██║
-         ╚════╝  ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝  ╚═╝
-    </pre>
-    <form action="/search">
-      <h3>Type PROGRAMMING LANGUAGE what you are looking for the job .</h3>
+    <main class="container">
       <hr />
       <br />
-      <hr />
-      <h4>This is what you looking for : {{keyword}}</h4>
-      <table>
-        <th>title</th>
-        <th>company</th>
-        <th>location</th>
-        <th>jobtype</th>
-        <th>elapsed_time</th>
-        <th>apply_link</th>
-        <th>salary</th>
-        <th>tag</th>
-        <th>verified</th>
-        <th>closed</th>
-        {% for jobset in remoteok %}
-        <tr>
-          <td>{{jobset.title}}</td>
-          <td>{{jobset.company}}</td>
-          <td>{{jobset.location}}</td>
-          <td>{{jobset.jobtype}}</td>
-          <td>{{jobset.elapsed_time}}</td>
-          <td>{{jobset.apply_link}}</td>
-          <td>{{jobset.salary}}</td>
-          <td>{{jobset.tag}}</td>
-          <td>{{jobset.verified}}</td>
-          <td>{{jobset.closed}}</td>
-        </tr>
-        {% endfor %}
+      <pre>
+        　
+              ██╗ ██████╗ ██████╗ ███████╗ ██████╗██████╗  █████╗ ██████╗ ██████╗ ███████╗██████╗ 
+              ██║██╔═══██╗██╔══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
+              ██║██║   ██║██████╔╝███████╗██║     ██████╔╝███████║██████╔╝██████╔╝█████╗  ██████╔╝
+         ██   ██║██║   ██║██╔══██╗╚════██║██║     ██╔══██╗██╔══██║██╔═══╝ ██╔═══╝ ██╔══╝  ██╔══██╗
+         ╚█████╔╝╚██████╔╝██████╔╝███████║╚██████╗██║  ██║██║  ██║██║     ██║     ███████╗██║  ██║
+          ╚════╝  ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚══════╝╚═╝  ╚═╝
+      </pre>
+      <form action="/search">
+        <h3>Type PROGRAMMING LANGUAGE what you are looking for the job .</h3>
+        <hr />
+        <br />
+        <hr />
+        <h4>This is what you looking for : {{keyword}}</h4>
+      </form>
+    </main>
+    <div>
+      <table role="grid">
+        <thead>
+          <th><b>title</b></th>
+          <th><b>company</b></th>
+          <th><b>location</b></th>
+          <th><b>jobtype</b></th>
+          <th><b>elapsed</b></th>
+          <th><b>apply</b></th>
+          <th><b>salary</b></th>
+          <th><b>tag</b></th>
+          <th><b>verified</b></th>
+          <th><b>closed</b></th>
+        </thead>
+        <tbody>
+          <figure>
+            {% for jobset in remoteok %}
+            <tr>
+              <td>{{jobset.title}}</td>
+              <td>{{jobset.company}}</td>
+              <td>{{jobset.location}}</td>
+              <td>{{jobset.jobtype}}</td>
+              <td>{{jobset.elapsed_time}}</td>
+              <td>
+                <a href="{{jobset.apply_link}}" target="_blank"
+                  >{{jobset.apply_link}}</a
+                >
+              </td>
+              <td>{{jobset.salary}}</td>
+              <td>{{jobset.tag}}</td>
+              <td>{{jobset.verified}}</td>
+              <td>{{jobset.closed}}</td>
+            </tr>
+            {% endfor %}
+          </figure>
+        </tbody>
       </table>
-    </form>
+    </div>
   </body>
 </html>
