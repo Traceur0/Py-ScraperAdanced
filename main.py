@@ -32,7 +32,7 @@ def export():
     if keyword not in database:
         return redirect(f"/search?keyword={keyword}")
     mk_remoteok_into_csv(keyword, database[keyword])
-    return send_file(f"{keyword}.csv", as_attachment=True)
+    return send_file(f"remoteok_{keyword}_{init}.csv", as_attachment=True)
 
 app.run("127.0.0.1")
 
